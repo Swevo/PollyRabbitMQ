@@ -1,0 +1,43 @@
+name: Build & Publish
+
+on:
+  push:
+    branches: [ main ]
+    tags:     [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  checks: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+      - run: dotnet restore
+      - run: dotnet build --no-restore -c Release
+      - run: dotnet test --no-build -c Release --logger trx --results-directory TestResults
+      - uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: TestResults/**/*.trx
+          fail_on: test failures
+          action_fail: false
+
+  pack:
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+      - run: dotnet restore
+      - run: dotnet build src/PollyRabbitMQ/PollyRabbitMQ.csproj -c Release --no-restore
+      - run: dotnet pack src/PollyRabbitMQ/PollyRabbitMQ.csproj -c Release --no-build -o nupkgs
+      - run: dotnet nuget push nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
