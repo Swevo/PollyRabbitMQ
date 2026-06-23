@@ -1,0 +1,11 @@
+global using FluentAssertions;
+global using NSubstitute;
+global using NSubstitute.Core;
+global using NSubstitute.ExceptionExtensions;
+global using Polly.CircuitBreaker;
+global using Polly.Timeout;
+global using PollyRabbitMQ;
+global using RabbitMQ.Client;
+global using RabbitMQ.Client.Events;
+global using RabbitMQ.Client.Exceptions;
+global using Xunit;
