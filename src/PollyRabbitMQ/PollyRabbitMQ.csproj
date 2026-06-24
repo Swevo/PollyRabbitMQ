@@ -1,22 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <PackageId>PollyRabbitMQ</PackageId>
-    <Version>1.0.0</Version>
-    <Authors>Swevo</Authors>
-    <Description>Polly v8 resilience for RabbitMQ.Client v7+ — retry, circuit breaker, and timeout for publishing and consuming messages. Wraps IChannel with automatic transient fault handling and connection recovery.</Description>
-    <PackageTags>polly;polly-v8;rabbitmq;rabbitmq-client;amqp;resilience;retry;circuit-breaker;messaging;microservices;dotnet;csharp;fault-tolerance;message-queue;distributed-systems</PackageTags>
+    <Version>1.0.1</Version>
+    <Authors>Justin Bannister</Authors>
+    <Copyright>Copyright (c) 2025 Justin Bannister</Copyright>
+    <Description>Polly v8 resilience for RabbitMQ.Client v7+ — retry, circuit-breaker, and timeout for IChannel operations, with built-in RabbitMqTransientErrors predicate covering AlreadyClosedException, BrokerUnreachableException, OperationInterruptedException, and ConnectFailureException. Includes automatic channel recreation between retries.</Description>
+    <PackageTags>polly;polly-v8;rabbitmq;rabbitmq-client;amqp;resilience;retry;circuit-breaker;timeout;fault-tolerance;messaging;microservices;dotnet;aspnetcore;csharp;message-queue;distributed-systems;dependency-injection</PackageTags>
+    <PackageReleaseNotes>1.0.0: Initial release. ResilientChannel wraps IChannel with Polly v8 retry, circuit-breaker, and timeout. RabbitMqTransientErrors exposes a pre-built ShouldHandle predicate. Automatic channel recreation between retries. Supports net6.0, net8.0, and net9.0.</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/Swevo/PollyRabbitMQ</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Swevo/PollyRabbitMQ</RepositoryUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageIcon>icon.png</PackageIcon>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
