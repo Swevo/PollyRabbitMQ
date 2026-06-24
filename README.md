@@ -186,6 +186,11 @@ This is critical for long-running publishers that survive broker restarts.
 
 ---
 
+## 💼 Need .NET consulting?
+
+The author of this package is available for consulting on **Polly v8 resilience**, **Azure cloud architecture**, and **clean .NET design**.
+
+**[→ solidqualitysolutions.com](https://www.solidqualitysolutions.com/)**
 ## License
 
 MIT
