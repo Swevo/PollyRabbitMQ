@@ -4,4 +4,6 @@ obj/
 *.user
 *.suo
 *.nupkg
+*.snupkg
+nupkgs/
 TestResults/
