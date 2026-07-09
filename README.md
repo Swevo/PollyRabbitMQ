@@ -3,6 +3,7 @@
 [![NuGet](https://img.shields.io/nuget/v/PollyRabbitMQ.svg)](https://www.nuget.org/packages/PollyRabbitMQ)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/PollyRabbitMQ.svg)](https://www.nuget.org/packages/PollyRabbitMQ)
 [![CI](https://github.com/Swevo/PollyRabbitMQ/actions/workflows/build.yml/badge.svg)](https://github.com/Swevo/PollyRabbitMQ/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Polly v8 resilience for RabbitMQ.Client v7+** — retry, circuit-breaker, and timeout for `IChannel` operations, with a built-in `RabbitMqTransientErrors` predicate covering the most common RabbitMQ transient exceptions. Includes automatic channel recreation between retries so `AlreadyClosedException` never kills your publisher.
 
